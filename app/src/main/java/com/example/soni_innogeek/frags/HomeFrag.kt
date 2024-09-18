@@ -5,22 +5,63 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import android.widget.Toast
 import com.example.soni_innogeek.R
+import com.example.soni_innogeek.databinding.FragmentHomeBinding
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 
 class HomeFrag : Fragment() {
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var firebaseDatabase: FirebaseDatabase
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    private lateinit var databaseReference: DatabaseReference
 
-    }
+    private lateinit var retrieveTV: TextView
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater,container,false)
+
+        val view= binding.root
+        firebaseDatabase = FirebaseDatabase.getInstance()
+        databaseReference = firebaseDatabase.getReference("SensorData")
+
+        getData()
+
+        return view
+    }
+    private fun getData() {
+        // Add a value event listener to retrieve data from Firebase
+        databaseReference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                // Check if the snapshot exists and contains the expected data
+                if (snapshot.exists()) {
+                    // Retrieve humidity and temperature values from the snapshot
+                    val humidity = snapshot.child("humidity").getValue(Double::class.java)
+                    val temperature = snapshot.child("temperature").getValue(Double::class.java)
+
+                    // Update the TextViews with the retrieved data
+                    binding.humidityValue.text = "${humidity?.toString() ?: "N/A"}"
+                    binding.tempValue.text = "${temperature?.toString() ?: "N/A"}"
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Handle database retrieval error
+                Toast.makeText(requireContext(), "Failed to get data.", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
 
