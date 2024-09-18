@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "380026890988",
+    "project_id": "login-register-firebase-57493",
+    "storage_bucket": "login-register-firebase-57493.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:380026890988:android:0629b7e0fe28044361d3c9",
+        "android_client_info": {
+          "package_name": "com.example.soni_innogeek"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_ObCvjR9FxX3Te01FZtrTilvsQNlus90"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
