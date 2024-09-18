@@ -26,7 +26,11 @@ class HomeFrag : Fragment() {
     private lateinit var retrieveTV: TextView
 
 
+<<<<<<< Updated upstream
 
+=======
+    }
+>>>>>>> Stashed changes
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
