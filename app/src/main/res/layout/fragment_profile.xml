@@ -25,6 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="UserName"
+                android:textStyle="bold"
                 android:textSize="32sp"
                 app:drawableEndCompat="@drawable/baseline_keyboard_arrow_down_24" />
 
@@ -36,20 +37,22 @@
                 app:drawableEndCompat="@drawable/baseline_more_vert_24" />
         </RelativeLayout>
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_picture"
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:layout_marginStart="12dp"
             android:layout_marginTop="12dp"
-            android:src="@drawable/surajmukhilogo"/>
+            android:src="@drawable/surajmukhilogo"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#1D000000"/>
 
         <TextView
             android:id="@+id/profile_name"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:text="Name"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"/>
 
@@ -58,7 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:text="Email Id"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:layout_marginStart="8dp"/>
 
         <TextView
@@ -66,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:text="location"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:layout_marginStart="8dp"/>
 
 
@@ -79,11 +82,84 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginLeft="24dp"
                 android:layout_marginRight="24dp"
-                android:layout_marginBottom="12dp">
+                android:layout_marginBottom="12dp"
+               >
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@drawable/latpfp">
+
+                    <LinearLayout
+                        android:layout_width="160dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="12dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Longitude"
+                            android:textSize="24sp"
+                            />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="108"
+                                android:textSize="32sp"
+                                />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="o"
+                                android:layout_marginStart="4dp"
+                                />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Latitude"
+                            android:textSize="24sp"
+
+                            />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="72"
+                                android:textSize="32sp"
+                                />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="o"
+                                android:layout_marginStart="4dp"
+                                />
+                        </LinearLayout>
+
+
+
+                    </LinearLayout>
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="160dp"
+                        android:layout_height="160dp"
+                        android:src="@drawable/latitude"
+                        android:padding="8dp"
+                        app:civ_border_width="2dp"
+                        app:civ_border_color="#FF000000"//>
+                </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
@@ -91,7 +167,6 @@
                 android:id="@+id/profile_card2"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
-                android:layout_alignParentBottom="true"
                 app:cardElevation="24dp"
                 app:cardCornerRadius="12dp"
                 android:layout_marginTop="12dp"
@@ -99,6 +174,41 @@
                 android:layout_marginRight="24dp"
                 android:layout_marginBottom="24dp">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@drawable/pfp">
+
+                    <LinearLayout
+                        android:layout_width="160dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="12dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Money\nGenerated"
+                            android:textSize="24sp"
+                            />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="$12,000"
+                            android:textSize="28sp"
+                            android:layout_marginTop="12dp"/>
+                    </LinearLayout>
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="160dp"
+                        android:layout_height="160dp"
+                        android:src="@drawable/rupay"
+                        android:padding="8dp"
+                        app:civ_border_width="2dp"
+                        app:civ_border_color="#FF000000"/>
+                </LinearLayout>
             </androidx.cardview.widget.CardView>
 
 
@@ -106,17 +216,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Settings"
+            android:textStyle="bold"
             android:textSize="32sp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"/>
-
-
-
-
-
-
-
-
     </LinearLayout>
 
 </FrameLayout>
