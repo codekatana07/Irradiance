@@ -19,7 +19,7 @@
 
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/top_card"
+            android:id="@+id/temp_card"
             android:layout_width="match_parent"
             android:layout_height="160dp"
             android:layout_marginRight="30dp"
@@ -99,7 +99,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/middle_card"
+            android:id="@+id/humiditycard"
             android:layout_width="match_parent"
             android:layout_height="160dp"
             android:layout_marginRight="30dp"
@@ -166,7 +166,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/bottom_card"
+            android:id="@+id/efficiencycard"
             android:layout_width="match_parent"
             android:layout_height="160dp"
             android:layout_marginRight="30dp"
@@ -234,7 +234,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/end_card"
+            android:id="@+id/powercard"
             android:layout_width="match_parent"
             android:layout_height="160dp"
             android:layout_marginRight="30dp"

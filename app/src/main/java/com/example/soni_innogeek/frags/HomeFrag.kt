@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import com.example.soni_innogeek.MainActivity
 import com.example.soni_innogeek.R
 import com.example.soni_innogeek.databinding.FragmentHomeBinding
 import com.google.firebase.database.DataSnapshot
@@ -26,11 +27,7 @@ class HomeFrag : Fragment() {
     private lateinit var retrieveTV: TextView
 
 
-<<<<<<< Updated upstream
 
-=======
-    }
->>>>>>> Stashed changes
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,6 +39,16 @@ class HomeFrag : Fragment() {
         databaseReference = firebaseDatabase.getReference("SensorData")
 
         getData()
+        binding.tempCard.setOnClickListener{
+            callfrommainactivity(tempCardFrag())
+        }
+        binding.humiditycard.setOnClickListener{
+            callfrommainactivity(humidityCardFrag())
+        }
+        binding.efficiencycard.setOnClickListener{
+            callfrommainactivity(tempCardFrag())
+        }
+
 
         return view
     }
@@ -66,6 +73,9 @@ class HomeFrag : Fragment() {
                 Toast.makeText(requireContext(), "Failed to get data.", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+    private fun callfrommainactivity(frag:Fragment){
+        (activity as MainActivity).replaceFragment(frag)
     }
 
 

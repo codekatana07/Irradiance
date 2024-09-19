@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    private fun replaceFragment(fragment: Fragment) {
+     fun replaceFragment(fragment: Fragment) {
         val fragTrans = supportFragmentManager.beginTransaction()
         fragTrans.replace(R.id.frame, fragment)
         fragTrans.commit()
