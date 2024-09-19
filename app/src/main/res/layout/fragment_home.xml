@@ -25,7 +25,8 @@
             android:layout_marginRight="30dp"
             android:layout_marginTop="30dp"
             android:layout_marginLeft="30dp"
-            app:cardCornerRadius="16dp">
+            app:cardCornerRadius="16dp"
+            app:cardElevation="24dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -47,6 +48,7 @@
                         android:text="Temperature"
                         android:textColor="#ffff"
                         android:textSize="34sp" />
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -105,7 +107,8 @@
             android:layout_marginRight="30dp"
             android:layout_marginTop="30dp"
             android:layout_marginLeft="30dp"
-            app:cardCornerRadius="16dp">
+            app:cardCornerRadius="16dp"
+            app:cardElevation="24dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -172,7 +175,8 @@
             android:layout_marginRight="30dp"
             android:layout_marginTop="30dp"
             android:layout_marginLeft="30dp"
-            app:cardCornerRadius="16dp">
+            app:cardCornerRadius="16dp"
+            app:cardElevation="24dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -240,7 +244,8 @@
             android:layout_marginRight="30dp"
             android:layout_marginTop="30dp"
             android:layout_marginLeft="30dp"
-            app:cardCornerRadius="16dp">
+            app:cardCornerRadius="16dp"
+            app:cardElevation="24dp">
 
             <LinearLayout
                 android:layout_width="match_parent"

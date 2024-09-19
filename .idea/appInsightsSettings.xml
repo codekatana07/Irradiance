@@ -9,9 +9,9 @@
               <option name="connection">
                 <ConnectionSetting>
                   <option name="appId" value="com.example.soni_innogeek" />
-                  <option name="mobileSdkAppId" value="1:380026890988:android:0629b7e0fe28044361d3c9" />
-                  <option name="projectId" value="login-register-firebase-57493" />
-                  <option name="projectNumber" value="380026890988" />
+                  <option name="mobileSdkAppId" value="1:856359079371:android:5ef5884da92b1c4e03ba4e" />
+                  <option name="projectId" value="surya-mukhi" />
+                  <option name="projectNumber" value="856359079371" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
