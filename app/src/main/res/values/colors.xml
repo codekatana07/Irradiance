@@ -4,4 +4,6 @@
     <color name="white">#FFFFFFFF</color>
 <!--    <color name="custom_yellow">#ffde59</color>-->
     <color name="custom_orange">#ffbd59</color>
+    <color name="light_magenta">#FF00FF</color>
+
 </resources>

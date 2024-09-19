@@ -56,10 +56,10 @@ class humidityCardFrag : Fragment() {
 
                         // Update max and min temperatures
                         if (maxhumidity == null || humidity > maxhumidity!!) {
-                            minhumidity = humidity
+                            maxhumidity = humidity
                         }
                         if (minhumidity == null || humidity < minhumidity!!) {
-                            maxhumidity = humidity
+                            minhumidity = humidity
                         }
 
                         // Update the UI with the new values
