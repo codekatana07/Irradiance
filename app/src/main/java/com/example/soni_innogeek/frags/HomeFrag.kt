@@ -46,7 +46,10 @@ class HomeFrag : Fragment() {
             callfrommainactivity(humidityCardFrag())
         }
         binding.efficiencycard.setOnClickListener{
-            callfrommainactivity(tempCardFrag())
+            callfrommainactivity(efficiencyCardFrag())
+        }
+        binding.powercard.setOnClickListener{
+            callfrommainactivity(powerCardFrag())
         }
 
 

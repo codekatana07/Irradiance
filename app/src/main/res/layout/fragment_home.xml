@@ -4,18 +4,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".frags.HomeFrag">
+    tools:context=".frags.HomeFrag"
+    android:background="@drawable/evening">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-
-
-    <LinearLayout
+        <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hi Jacob"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                android:textColor="#ffff"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="8dp"
+                />
+
+<!--        <ImageView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="400dp"-->
+<!--            android:src="@drawable/evening"-->
+<!--            android:padding="8dp" />-->
 
         <androidx.cardview.widget.CardView
             android:id="@+id/temp_card"
@@ -36,8 +51,8 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="16dp"
                     android:orientation="vertical">
 
 
@@ -46,7 +61,7 @@
                         android:layout_height="wrap_content"
                         android:text="Temperature"
                         android:textColor="#ffff"
-                        android:textSize="34sp" />
+                        android:textSize="30sp" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -59,7 +74,7 @@
                             android:layout_height="wrap_content"
                             android:text="40"
                             android:textColor="#ffff"
-                            android:textSize="60sp" />
+                            android:textSize="48sp" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -70,7 +85,7 @@
                                 android:layout_height="wrap_content"
                                 android:textColor="#ffff"
                                 android:text="o"
-                                android:textSize="24sp"
+                                android:textSize="20sp"
 
                                 />
                             <TextView
@@ -79,7 +94,7 @@
                                 android:layout_marginStart="4dp"
                                 android:text="C"
                                 android:textColor="#F6FFFFFF"
-                                android:textSize="36sp"
+                                android:textSize="32sp"
                                 android:layout_marginTop="12dp"/>
 
                         </LinearLayout>
@@ -94,6 +109,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginStart="14dp"
                     app:drawableRightCompat="@drawable/baseline_device_thermostat_24" />
 
             </LinearLayout>
@@ -118,9 +134,8 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginEnd="42dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="16dp"
                     android:orientation="vertical">
 
 
@@ -129,7 +144,7 @@
                         android:layout_height="wrap_content"
                         android:text="Humidity"
                         android:textColor="#ffff"
-                        android:textSize="36sp" />
+                        android:textSize="30sp" />
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -141,7 +156,7 @@
                             android:layout_height="wrap_content"
                             android:text="95"
                             android:textColor="#ffff"
-                            android:textSize="60sp" />
+                            android:textSize="48sp" />
 
 
                             <TextView
@@ -149,7 +164,7 @@
                                 android:layout_height="wrap_content"
                                 android:textColor="#ffff"
                                 android:text="%"
-                                android:textSize="48sp"
+                                android:textSize="32sp"
                                 />
 
 
@@ -162,6 +177,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginStart="66sp"
                     app:drawableLeftCompat="@drawable/baseline_water_24" />
 
             </LinearLayout>
@@ -186,9 +202,8 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginEnd="34dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="16dp"
                     android:orientation="vertical">
 
 
@@ -197,7 +212,7 @@
                         android:layout_height="wrap_content"
                         android:text="Efficiency"
                         android:textColor="#ffff"
-                        android:textSize="36sp" />
+                        android:textSize="30sp" />
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -209,7 +224,7 @@
                             android:layout_height="wrap_content"
                             android:text="83"
                             android:textColor="#ffff"
-                            android:textSize="60sp" />
+                            android:textSize="48sp" />
 
 
                             <TextView
@@ -217,7 +232,7 @@
                                 android:layout_height="wrap_content"
                                 android:textColor="#ffff"
                                 android:text="%"
-                                android:textSize="48sp"
+                                android:textSize="32sp"
                                 />
 
 
@@ -231,6 +246,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginStart="56sp"
                     app:drawableLeftCompat="@drawable/baseline_auto_graph_24" />
 
             </LinearLayout>
@@ -256,9 +272,9 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="12dp"
-                    android:layout_marginEnd="40dp"
+
                     android:orientation="vertical">
 
 
@@ -279,14 +295,14 @@
                             android:layout_height="wrap_content"
                             android:text="40"
                             android:textColor="#ffff"
-                            android:textSize="60sp" />
+                            android:textSize="48sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="#ffff"
                                 android:text="W"
-                                android:textSize="40sp"
+                                android:textSize="32sp"
                                 android:layout_marginStart="4dp"
                                 />
 
@@ -300,6 +316,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginStart="36sp"
                     app:drawableLeftCompat="@drawable/baseline_bolt_24" />
 
             </LinearLayout>
