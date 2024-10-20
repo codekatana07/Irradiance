@@ -131,10 +131,6 @@
             android:layout_height="400dp"
             android:src="@drawable/graph3"/>
 
-
-
-
-
     </LinearLayout>
     </ScrollView>
 
