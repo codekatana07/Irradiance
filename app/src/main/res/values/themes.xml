@@ -14,7 +14,7 @@
     <style name="nightModeSwitch" parent="Theme.AppCompat.Light">
         <item name="colorControlActivated">@color/light_magenta</item>
         <item name="colorSwitchThumbNormal">@color/white</item>
-        <item name="android:colorForeground">#46FFFFFF</item>
+        <item name="android:colorForeground">#FFFFFF</item>
 
     </style>
 
