@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".frags.tempCardFrag"
-    android:background="@drawable/humdfragbkg">
+    android:background="@drawable/efficiencyfragbkg">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -39,10 +39,10 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/currenthumidity"
+                    android:id="@+id/currentefficiency"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="C HUMIDITY"
+                    android:text="C EFFICIENCY"
                     android:textStyle="bold"
                     android:textColor="#ffff"
                     android:textSize="38sp"
@@ -81,9 +81,9 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/humdfragbkg1">
+                        android:background="@drawable/efficiencyfragbkg1">
                         <TextView
-                            android:id="@+id/maxhumidity"
+                            android:id="@+id/maxefficiency"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="MAXIMUM "
@@ -109,9 +109,9 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/humdfragbkg1">
+                        android:background="@drawable/efficiencyfragbkg1">
                         <TextView
-                            android:id="@+id/minhumidity"
+                            android:id="@+id/minefficiency"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="MINIMUM "
@@ -129,7 +129,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
-                android:src="@drawable/graph2"/>
+                android:src="@drawable/graph1"/>
 
 
 
