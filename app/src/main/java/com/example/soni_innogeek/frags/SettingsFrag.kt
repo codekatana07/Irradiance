@@ -57,8 +57,8 @@ class SettingsFrag : Fragment() {
     private fun fetchAngleDataFromFirebase() {
         databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val horizontalAngle = dataSnapshot.child("horizontal").getValue(Int::class.java)
-                val verticalAngle = dataSnapshot.child("vertical").getValue(Int::class.java)
+                val horizontalAngle = dataSnapshot.child("x_axis").getValue(Int::class.java)
+                val verticalAngle = dataSnapshot.child("y_axis").getValue(Int::class.java)
 
                 // Update UI with angles from Firebase
                 if (horizontalAngle != null) {
