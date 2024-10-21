@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".frags.HomeFrag"
-    android:background="@drawable/night">
+    tools:context=".frags.HomeFrag">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -15,16 +14,32 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Hi Aryaveer"
-                android:textSize="36sp"
-                android:textStyle="bold"
-                android:textColor="#ffff"
-                android:layout_marginTop="12dp"
-                android:layout_marginStart="8dp"
-                />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hi Aryaveer"
+                    android:textSize="36sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginStart="8dp"
+                    />
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/animationView6"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    app:lottie_rawRes="@raw/suncloud"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"/>
+
+            </LinearLayout>
+
+
 
 <!--        <ImageView-->
 <!--            android:layout_width="match_parent"-->
@@ -37,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="160dp"
             android:layout_marginRight="30dp"
-            android:layout_marginTop="30dp"
+
             android:layout_marginLeft="30dp"
             app:cardCornerRadius="16dp"
             app:cardElevation="24dp">
@@ -317,7 +332,7 @@
                             android:layout_height="wrap_content"
                             android:text="40"
                             android:textColor="#ffff"
-                            android:textSize="48sp" />
+                            android:textSize="44sp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
