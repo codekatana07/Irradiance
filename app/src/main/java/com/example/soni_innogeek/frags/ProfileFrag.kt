@@ -16,14 +16,11 @@ import com.example.soni_innogeek.MainActivity
 import com.example.soni_innogeek.R
 import com.example.soni_innogeek.databinding.FragmentProfileBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser;
 
 
 class ProfileFrag : Fragment() {
     private lateinit var _binding : FragmentProfileBinding
     private val binding get() = _binding!!
-
-
 
 
     override fun onCreateView(
