@@ -9,23 +9,23 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Apparatus mode"
-                android:textSize="32sp"/>
-            <ToggleButton
-                android:id="@+id/onOrOff"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textOn="WORKING"
-                android:textOff="STANDBY"
-                />
-        </LinearLayout>
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal">-->
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Apparatus mode"-->
+<!--                android:textSize="32sp"/>-->
+<!--            <ToggleButton-->
+<!--                android:id="@+id/onOrOff"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textOn="WORKING"-->
+<!--                android:textOff="STANDBY"-->
+<!--                />-->
+<!--        </LinearLayout>-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
                 android:text="Horizontal"
                 android:textSize="32sp"/>
             <TextView
-                android:id="@+id/hori_angle"
+                android:id="@+id/horiAngle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="47°"
@@ -58,7 +58,7 @@
                 android:text="Vertical"
                 android:textSize="32sp"/>
             <TextView
-                android:id="@+id/vertiangle"
+                android:id="@+id/vertiAngle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="47°"
