@@ -5,56 +5,86 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.example.soni_innogeek.R
+import com.example.soni_innogeek.databinding.FragmentPowerCardBinding
+import com.example.soni_innogeek.databinding.FragmentTempCardBinding
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import kotlin.math.max
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [powerCardFrag.newInstance] factory method to
- * create an instance of this fragment.
- */
 class powerCardFrag : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var _binding: FragmentPowerCardBinding? = null
+    private val binding get() = _binding!!
+    private var currentPower: Int? = null
+    private var maxPower: Int? = null
+    private var minPower: Int? = null
+
+
+    private lateinit var firebaseDatabase: FirebaseDatabase
+    private lateinit var databaseReference: DatabaseReference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_power_card, container, false)
-    }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment powerCardFrag.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            powerCardFrag().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+        _binding = FragmentPowerCardBinding.inflate(inflater, container, false)
+        val view = binding.root
+
+        // Initialize Firebase Database
+        firebaseDatabase = FirebaseDatabase.getInstance()
+        databaseReference = firebaseDatabase.getReference("SensorData/Power")
+
+        // Fetch and update temperature data
+        getPowerData()
+
+
+        return view
+        }
+
+    private fun getPowerData() {
+        databaseReference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                // Get the current temperature value from Firebase
+                val power = snapshot.getValue(Int::class.java)
+
+                if (power != null) {
+                    currentPower = power
+                    if (power != null) {
+                        currentPower = power
+
+                        // Update max and min temperatures
+                        if (maxPower == null || power > maxPower!!) {
+                            maxPower = power
+                        }
+                        if (minPower == null || power < minPower!!) {
+                            minPower = power
+                        }
+                    }
+                    // Update the UI with the new values
+                    updatePowerUI()
                 }
             }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Handle any errors
+                Toast.makeText(requireContext(), "Failed to get temperature data.", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
+
+    private fun updatePowerUI() {
+            binding.currentpower.text = "Current Power: ${currentPower}W"
+        binding.maxpow.text = "Max Power: ${maxPower}W"
+        binding.minpow.text = "Min Power: ${minPower}W"
+
+    }
+
+
 }
