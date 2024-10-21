@@ -58,6 +58,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="#ffff"
                         android:text="%"
+                        android:layout_marginTop="20dp"
                         android:textStyle="bold"
                         android:textSize="32sp" />
                 </LinearLayout>
@@ -126,10 +127,18 @@
 
             </LinearLayout>
 
-            <ImageView
+<!--            <ImageView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="400dp"-->
+<!--                android:src="@drawable/graph1"/>-->
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animationView7"
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
-                android:src="@drawable/graph1"/>
+                android:layout_marginTop="40dp"
+                app:lottie_rawRes="@raw/graph4"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="false"/>
 
 
 

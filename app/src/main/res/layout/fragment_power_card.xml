@@ -126,10 +126,18 @@
 
             </LinearLayout>
 
-            <ImageView
+<!--            <ImageView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="400dp"-->
+<!--                android:src="@drawable/graph4"/>-->
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animationView7"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
-                android:src="@drawable/graph4"/>
+                android:layout_height="300dp"
+                android:layout_marginTop="40dp"
+                app:lottie_rawRes="@raw/graph6"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="false"/>
 
 
 

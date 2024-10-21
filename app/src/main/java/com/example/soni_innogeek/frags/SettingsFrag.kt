@@ -94,11 +94,11 @@ class SettingsFrag : Fragment() {
 
             when (angleType) {
                 "horizontal" -> {
-                    databaseReference.child("horizontal").setValue(selectedAngle)
+                    databaseReference.child("x_axis").setValue(selectedAngle)
                     binding.horiAngle.text = "$selectedAngle°"
                 }
                 "vertical" -> {
-                    databaseReference.child("vertical").setValue(selectedAngle)
+                    databaseReference.child("y_axis").setValue(selectedAngle)
                     binding.vertiAngle.text = "$selectedAngle°"
                 }
             }
