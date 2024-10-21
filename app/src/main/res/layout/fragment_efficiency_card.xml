@@ -42,7 +42,7 @@
                     android:id="@+id/currentefficiency"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="C EFFICIENCY"
+                    android:text="C output"
                     android:textStyle="bold"
                     android:textColor="#ffff"
                     android:textSize="38sp"

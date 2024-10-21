@@ -30,6 +30,7 @@ class SignUpActivity : AppCompatActivity() {
             startActivity(intent)
         }
         binding.signupButton.setOnClickListener {
+//            val username = binding.signupUsername.text.toString()
             val email = binding.signupEmail.text.toString()
             val pass = binding.signupPassword.text.toString()
             val confirmPass = binding.signupConfirmpassword.text.toString()

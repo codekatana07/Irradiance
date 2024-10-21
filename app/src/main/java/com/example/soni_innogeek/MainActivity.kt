@@ -1,5 +1,6 @@
 package com.example.soni_innogeek
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
@@ -11,6 +12,7 @@ import com.example.soni_innogeek.databinding.ActivityMainBinding
 import com.example.soni_innogeek.frags.HomeFrag
 import com.example.soni_innogeek.frags.ProfileFrag
 import com.example.soni_innogeek.frags.SettingsFrag
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding:ActivityMainBinding
@@ -19,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         replaceFragment(HomeFrag())
+
 
         binding.bottomNavView.setOnItemSelectedListener { item ->
             handleBottomNavigation(item)

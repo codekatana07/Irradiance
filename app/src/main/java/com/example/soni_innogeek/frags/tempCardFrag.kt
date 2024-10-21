@@ -43,6 +43,7 @@ class tempCardFrag : Fragment() {
         // Fetch and update temperature data
         getTemperatureData()
 
+
         return view
     }
 

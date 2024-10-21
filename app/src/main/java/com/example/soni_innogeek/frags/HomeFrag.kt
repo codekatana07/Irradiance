@@ -73,7 +73,7 @@ class HomeFrag : Fragment() {
 
             override fun onCancelled(error: DatabaseError) {
                 // Handle database retrieval error
-                Toast.makeText(requireContext(), "Failed to get data.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Failed to get data.${error.message}", Toast.LENGTH_SHORT).show()
             }
         })
     }
