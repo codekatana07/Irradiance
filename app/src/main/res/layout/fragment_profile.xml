@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".frags.ProfileFrag"
-    android:background="@drawable/evening">
+    android:background="@drawable/night">
 
 <ScrollView
         android:layout_width="match_parent"
@@ -64,7 +64,7 @@
             android:id="@+id/profile_email"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:text="Email Id"
+            android:text="soniavi3007@gmail.com"
             android:textSize="20sp"
             android:textColor="#ffff"
             android:layout_marginTop="8dp"
@@ -165,13 +165,20 @@
 
                     </LinearLayout>
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_width="160dp"
-                        android:layout_height="160dp"
-                        android:src="@drawable/latitude"
-                        android:padding="8dp"
-                        app:civ_border_width="2dp"
-                        app:civ_border_color="#FF000000"/>
+<!--                    <de.hdodenhof.circleimageview.CircleImageView-->
+<!--                        android:layout_width="160dp"-->
+<!--                        android:layout_height="160dp"-->
+<!--                        android:src="@drawable/latitude"-->
+<!--                        android:padding="8dp"-->
+<!--                        app:civ_border_width="2dp"-->
+<!--                        app:civ_border_color="#FF000000"/>-->
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/animationView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:lottie_rawRes="@raw/earth"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"/>
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
@@ -216,13 +223,20 @@
                             android:layout_marginTop="12dp"/>
                     </LinearLayout>
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_width="160dp"
-                        android:layout_height="160dp"
-                        android:src="@drawable/rupay"
-                        android:padding="8dp"
-                        app:civ_border_width="2dp"
-                        app:civ_border_color="#FF000000"/>
+<!--                    <de.hdodenhof.circleimageview.CircleImageView-->
+<!--                        android:layout_width="160dp"-->
+<!--                        android:layout_height="160dp"-->
+<!--                        android:src="@drawable/rupay"-->
+<!--                        android:padding="8dp"-->
+<!--                        app:civ_border_width="2dp"-->
+<!--                        app:civ_border_color="#FF000000"/>-->
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/animationView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:lottie_rawRes="@raw/money"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 

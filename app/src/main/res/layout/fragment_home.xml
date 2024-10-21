@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".frags.HomeFrag"
-    android:background="@drawable/evening">
+    android:background="@drawable/night">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -105,12 +105,19 @@
 
                 </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_marginStart="14dp"-->
+<!--                    app:drawableRightCompat="@drawable/baseline_device_thermostat_24" />-->
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/animationView"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="14dp"
-                    app:drawableRightCompat="@drawable/baseline_device_thermostat_24" />
+                    app:lottie_rawRes="@raw/thermometer"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -173,12 +180,20 @@
 
                 </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_marginStart="66sp"-->
+<!--                    app:drawableLeftCompat="@drawable/baseline_water_24" />-->
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/animationView3"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="66sp"
-                    app:drawableLeftCompat="@drawable/baseline_water_24" />
+                    app:lottie_rawRes="@raw/humidity2"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"/>
+
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -242,12 +257,19 @@
 
                 </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_marginStart="56sp"-->
+<!--                    app:drawableLeftCompat="@drawable/baseline_auto_graph_24" />-->
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/animationView4"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="56sp"
-                    app:drawableLeftCompat="@drawable/baseline_auto_graph_24" />
+                    app:lottie_rawRes="@raw/preoutput2"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -312,12 +334,19 @@
 
                 </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_marginStart="36sp"-->
+<!--                    app:drawableLeftCompat="@drawable/baseline_bolt_24" />-->
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/animationView5"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="36sp"
-                    app:drawableLeftCompat="@drawable/baseline_bolt_24" />
+                    app:lottie_rawRes="@raw/poweranimation"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
