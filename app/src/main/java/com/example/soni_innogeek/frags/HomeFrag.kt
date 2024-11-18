@@ -26,8 +26,6 @@ class HomeFrag : Fragment() {
 
     private lateinit var retrieveTV: TextView
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
