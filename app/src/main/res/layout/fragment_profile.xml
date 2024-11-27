@@ -255,23 +255,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:drawableStart="@drawable/baseline_brightness_5_24"
-                    android:drawablePadding="8dp"
-                    android:text="DARK MODE"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_margin="8dp"-->
+<!--                    android:drawableStart="@drawable/baseline_brightness_5_24"-->
+<!--                    android:drawablePadding="8dp"-->
+<!--                    android:text="DARK MODE"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:textStyle="bold" />-->
 
 
-                <androidx.appcompat.widget.SwitchCompat
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:switchMinWidth="50dp"
-                    android:theme="@style/nightModeSwitch" />
+<!--                <androidx.appcompat.widget.SwitchCompat-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:switchMinWidth="50dp"-->
+<!--                    android:theme="@style/nightModeSwitch" />-->
             </RelativeLayout>
             <!--notifications-->
             <RelativeLayout
