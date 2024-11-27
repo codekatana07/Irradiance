@@ -74,10 +74,14 @@
             android:id="@+id/profile_location"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:text="location"
+            android:text="Click to select location"
             android:textSize="20sp"
             android:textColor="#ffff"
-            android:layout_marginStart="8dp"/>
+            android:drawableEnd="@drawable/baseline_location_on_24"
+            android:layout_marginStart="8dp"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"/>
 
 
             <androidx.cardview.widget.CardView
@@ -117,12 +121,12 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <TextView
+                                android:id="@+id/longitude_value"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="108"
                                 android:textSize="24sp"
-                                android:textColor="#ffff"
-                                />
+                                android:textColor="#ffff"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -146,12 +150,12 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
                             <TextView
+                                android:id="@+id/latitude_value"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="72"
                                 android:textSize="24sp"
-                                android:textColor="#ffff"
-                                />
+                                android:textColor="#ffff"/>
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -165,13 +169,6 @@
 
                     </LinearLayout>
 
-<!--                    <de.hdodenhof.circleimageview.CircleImageView-->
-<!--                        android:layout_width="160dp"-->
-<!--                        android:layout_height="160dp"-->
-<!--                        android:src="@drawable/latitude"-->
-<!--                        android:padding="8dp"-->
-<!--                        app:civ_border_width="2dp"-->
-<!--                        app:civ_border_color="#FF000000"/>-->
                     <com.airbnb.lottie.LottieAnimationView
                         android:id="@+id/animationView"
                         android:layout_width="match_parent"
@@ -223,13 +220,7 @@
                             android:layout_marginTop="12dp"/>
                     </LinearLayout>
 
-<!--                    <de.hdodenhof.circleimageview.CircleImageView-->
-<!--                        android:layout_width="160dp"-->
-<!--                        android:layout_height="160dp"-->
-<!--                        android:src="@drawable/rupay"-->
-<!--                        android:padding="8dp"-->
-<!--                        app:civ_border_width="2dp"-->
-<!--                        app:civ_border_color="#FF000000"/>-->
+
                     <com.airbnb.lottie.LottieAnimationView
                         android:id="@+id/animationView2"
                         android:layout_width="match_parent"

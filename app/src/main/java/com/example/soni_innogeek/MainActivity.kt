@@ -21,8 +21,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         replaceFragment(HomeFrag())
-
-
         binding.bottomNavView.setOnItemSelectedListener { item ->
             handleBottomNavigation(item)
             true

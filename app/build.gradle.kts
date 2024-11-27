@@ -55,6 +55,12 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     implementation("de.hdodenhof:circleimageview:3.1.0")
     implementation ("com.airbnb.android:lottie:6.6.0")
+    // Add Places SDK dependency
+    implementation ("com.google.android.libraries.places:places:3.3.0")
+
+    // Make sure you have these Google Play Services dependencies
+    implementation ("com.google.android.gms:play-services-location:21.1.0")
+    implementation ("com.google.android.gms:play-services-maps:18.2.0")
 
 
 

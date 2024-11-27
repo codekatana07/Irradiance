@@ -36,7 +36,7 @@ class humidityCardFrag : Fragment() {
 
         // Initialize Firebase Database
         firebaseDatabase = FirebaseDatabase.getInstance()
-        databaseReference = firebaseDatabase.getReference("SensorData/humidity")
+        databaseReference = firebaseDatabase.getReference("WeatherData/humidity")
 
         // Fetch and update temperature data
         getHumidityData()

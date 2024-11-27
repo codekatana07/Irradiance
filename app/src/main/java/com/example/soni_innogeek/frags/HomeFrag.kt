@@ -26,6 +26,8 @@ class HomeFrag : Fragment() {
 
     private lateinit var retrieveTV: TextView
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,7 +36,7 @@ class HomeFrag : Fragment() {
 
         val view= binding.root
         firebaseDatabase = FirebaseDatabase.getInstance()
-        databaseReference = firebaseDatabase.getReference("SensorData")
+        databaseReference = firebaseDatabase.getReference("WeatherData")
 
         getData()
         binding.tempCard.setOnClickListener{
@@ -62,13 +64,13 @@ class HomeFrag : Fragment() {
                     // Retrieve humidity and temperature values from the snapshot
                     val humidity = snapshot.child("humidity").getValue(Double::class.java)
                     val temperature = snapshot.child("temperature").getValue(Double::class.java)
-                    val power = snapshot.child("Power").getValue(Double::class.java)
+//                    val power = snapshot.child("Power").getValue(Double::class.java)
 
 
                     // Update the TextViews with the retrieved data
                     binding.humidityValue.text = "${humidity?.toString() ?: "N/A"}"
                     binding.tempValue.text = "${temperature?.toString() ?: "N/A"}"
-                    binding.powerValue.text = "${power?.toString() ?: "N/A"}"
+//                    binding.powerValue.text = "${power?.toString() ?: "N/A"}"
 
 
                 }

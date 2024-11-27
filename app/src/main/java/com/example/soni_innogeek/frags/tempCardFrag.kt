@@ -38,7 +38,7 @@ class tempCardFrag : Fragment() {
 
         // Initialize Firebase Database
         firebaseDatabase = FirebaseDatabase.getInstance()
-        databaseReference = firebaseDatabase.getReference("SensorData/temperature")
+        databaseReference = firebaseDatabase.getReference("WeatherData")
 
         // Fetch and update temperature data
         getTemperatureData()
@@ -52,22 +52,10 @@ class tempCardFrag : Fragment() {
         databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 // Get the current temperature value from Firebase
-                val temperature = snapshot.getValue(Float::class.java)
-
-                if (temperature != null) {
-                    currentTemperature = temperature
-
-                    // Update max and min temperatures
-                    if (maxTemperature == null || temperature > maxTemperature!!) {
-                        maxTemperature = temperature
-                    }
-                    if (minTemperature == null || temperature < minTemperature!!) {
-                        minTemperature = temperature
-                    }
-
-                    // Update the UI with the new values
-                    updateTemperatureUI()
-                }
+                val temperature = snapshot.child("temperature").getValue(Float::class.java)
+                val maxtemperature = snapshot.child("max_temperature").getValue(Float::class.java)
+                val mintemperature = snapshot.child("min_temperature").getValue(Float::class.java)
+                updateTemperatureUI()
             }
 
             override fun onCancelled(error: DatabaseError) {
