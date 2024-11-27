@@ -20,13 +20,13 @@ import com.google.android.libraries.places.widget.Autocomplete
 import com.google.android.libraries.places.widget.AutocompleteActivity
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 class ProfileFrag : Fragment() {
     private lateinit var _binding: FragmentProfileBinding
     private val binding get() = _binding!!
-
-    // Add this constant for Places SDK
     private val AUTOCOMPLETE_REQUEST_CODE = 1
+    private val database = FirebaseDatabase.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,27 +34,36 @@ class ProfileFrag : Fragment() {
     ): View? {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
 
-        // Initialize Places SDK
         if (!Places.isInitialized()) {
             Places.initialize(requireContext(), "AIzaSyANIdPTTdL83hKbWCuTZ9yPwraDauxCR-c")
         }
 
-        // Setup click listeners
         binding.vertSettings.setOnClickListener {
             showPopupMenu(it)
         }
 
-        // Add click listener for location TextView
         binding.profileLocation.setOnClickListener {
             startLocationPicker()
         }
 
+        // Load existing location
+        loadLocation()
+
         return binding.root
     }
 
-    // Function to start Places Autocomplete
+    private fun loadLocation() {
+        database.getReference("location")
+            .get()
+            .addOnSuccessListener { snapshot ->
+                if (snapshot.exists()) {
+                    val location = snapshot.value.toString()
+                    binding.profileLocation.text = location
+                }
+            }
+    }
+
     private fun startLocationPicker() {
-        // Specify the fields to return
         val fields = listOf(
             Place.Field.ID,
             Place.Field.NAME,
@@ -62,7 +71,6 @@ class ProfileFrag : Fragment() {
             Place.Field.LAT_LNG
         )
 
-        // Start the autocomplete intent
         val intent = Autocomplete.IntentBuilder(
             AutocompleteActivityMode.FULLSCREEN, fields
         ).build(requireContext())
@@ -70,7 +78,6 @@ class ProfileFrag : Fragment() {
         startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE)
     }
 
-    // Handle the result from Places Autocomplete
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
             when (resultCode) {
@@ -99,32 +106,38 @@ class ProfileFrag : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
     }
 
-    // Show confirmation dialog for selected location
     private fun showConfirmationDialog(place: Place) {
         AlertDialog.Builder(requireContext())
             .setTitle("Confirm Location")
             .setMessage("Set location to: ${place.address}")
             .setPositiveButton("Confirm") { _, _ ->
-                // Update location TextView
                 binding.profileLocation.text = place.address
 
-                // Update latitude and longitude in card
-                // Find the TextViews in your card layout and update them
                 place.latLng?.let { latLng ->
-                    // Update longitude TextView (find it by ID in your card)
                     view?.findViewById<android.widget.TextView>(R.id.longitude_value)?.text =
                         String.format("%.2f", latLng.longitude)
-
-                    // Update latitude TextView (find it by ID in your card)
                     view?.findViewById<android.widget.TextView>(R.id.latitude_value)?.text =
                         String.format("%.2f", latLng.latitude)
+
+                    // Save location to Firebase
+                    saveLocationToFirebase(place.address.toString())
                 }
             }
             .setNegativeButton("Cancel", null)
             .show()
     }
 
-    // Your existing functions
+    private fun saveLocationToFirebase(location: String) {
+        database.getReference("location")
+            .setValue(location)
+            .addOnSuccessListener {
+                Toast.makeText(context, "Location saved successfully", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener {
+                Toast.makeText(context, "Failed to save location", Toast.LENGTH_SHORT).show()
+            }
+    }
+
     private fun showPopupMenu(view: View) {
         val popupMenu = PopupMenu(requireContext(), view)
         popupMenu.menuInflater.inflate(R.menu.menu, popupMenu.menu)

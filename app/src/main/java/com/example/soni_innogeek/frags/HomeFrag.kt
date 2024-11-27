@@ -70,7 +70,7 @@ class HomeFrag : Fragment() {
                     // Update the TextViews with the retrieved data
                     binding.humidityValue.text = "${humidity?.toString() ?: "N/A"}"
                     binding.tempValue.text = "${temperature?.toString() ?: "N/A"}"
-                    binding.powerValue.text = "${power?.toString() ?: "N/A"}"
+                   binding.powerValue.text = "${power?.toString() ?: "N/A"}"
 
 
                 }
