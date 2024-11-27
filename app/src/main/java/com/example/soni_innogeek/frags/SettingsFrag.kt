@@ -32,6 +32,16 @@ class SettingsFrag : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        _binding = FragmentSettingsBinding.inflate(inflater, container, false)
+        val view = binding.root
+
+        // Initialize Firebase database reference
+        firebaseDatabase = FirebaseDatabase.getInstance()
+        databaseReference = firebaseDatabase.getReference("panelAngle")
+
+        // Set initial values from Firebase
+        fetchAngleDataFromFirebase()
         //avisoni material switch
 
         var apparatusMode = 0
@@ -50,20 +60,11 @@ class SettingsFrag : Fragment() {
                 apparatusMode = 2
                 // The switch is checked.
             } else {
-                apparatusMode = 0
+                apparatusMode = 1
                 // The switch isn't checked.
             }
         }
         //
-        _binding = FragmentSettingsBinding.inflate(inflater, container, false)
-        val view = binding.root
-
-        // Initialize Firebase database reference
-        firebaseDatabase = FirebaseDatabase.getInstance()
-        databaseReference = firebaseDatabase.getReference("panelAngle")
-
-        // Set initial values from Firebase
-        fetchAngleDataFromFirebase()
 
         // Click listeners for change buttons
         binding.changehoriangle.setOnClickListener {
