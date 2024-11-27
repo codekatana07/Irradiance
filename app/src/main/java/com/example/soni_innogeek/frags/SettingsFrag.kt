@@ -32,6 +32,29 @@ class SettingsFrag : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        //avisoni material switch
+
+        var apparatusMode = 0
+
+        binding.materialSwitch.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                apparatusMode = 1
+                // The switch is checked.
+            } else {
+                apparatusMode = 0
+                // The switch isn't checked.
+            }
+        }
+        binding.toggle.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                apparatusMode = 2
+                // The switch is checked.
+            } else {
+                apparatusMode = 0
+                // The switch isn't checked.
+            }
+        }
+        //
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
         val view = binding.root
 
