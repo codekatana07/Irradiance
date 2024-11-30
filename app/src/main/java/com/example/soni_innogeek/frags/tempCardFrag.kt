@@ -52,9 +52,9 @@ class tempCardFrag : Fragment() {
         databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 // Get the current temperature value from Firebase
-                val temperature = snapshot.child("temperature").getValue(Float::class.java)
-                val maxtemperature = snapshot.child("max_temperature").getValue(Float::class.java)
-                val mintemperature = snapshot.child("min_temperature").getValue(Float::class.java)
+                currentTemperature = snapshot.child("temperature").getValue(Float::class.java)
+                maxTemperature = snapshot.child("max_temperature").getValue(Float::class.java)
+                minTemperature = snapshot.child("min_temperature").getValue(Float::class.java)
                 updateTemperatureUI()
             }
 
@@ -67,7 +67,7 @@ class tempCardFrag : Fragment() {
 
     private fun updateTemperatureUI() {
         // Display the current, max, and min temperatures in the TextViews
-        binding.currentTemp.text = "Current Temp: $currentTemperature°C"
+        binding.currentTemp.text = "Current Temp: ${currentTemperature}°C"
         binding.maxtemp.text = "Max Temp: $maxTemperature°C"
         binding.minimumTemp.text = "Min Temp: $minTemperature°C"
     }

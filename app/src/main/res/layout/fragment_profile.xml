@@ -73,12 +73,12 @@
         <TextView
             android:id="@+id/profile_location"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:text="Click to select location"
             android:textSize="20sp"
             android:textColor="#ffff"
             android:drawableEnd="@drawable/baseline_location_on_24"
-            android:layout_marginStart="8dp"
+            android:layout_margin="16dp"
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true"/>
@@ -207,14 +207,14 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Money\nSaved"
+                            android:text="Money\nGenerated"
                             android:textSize="28sp"
                             android:textColor="#ffff"
                             />
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="$12,000"
+                            android:text="$100"
                             android:textSize="24sp"
                             android:textColor="#ffff"
                             android:layout_marginTop="12dp"/>

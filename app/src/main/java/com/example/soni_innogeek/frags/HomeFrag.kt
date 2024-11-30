@@ -23,6 +23,8 @@ class HomeFrag : Fragment() {
     private lateinit var firebaseDatabase: FirebaseDatabase
 
     private lateinit var databaseReference: DatabaseReference
+    private lateinit var dbrefpower: DatabaseReference
+
 
     private lateinit var retrieveTV: TextView
 
@@ -37,6 +39,8 @@ class HomeFrag : Fragment() {
         val view= binding.root
         firebaseDatabase = FirebaseDatabase.getInstance()
         databaseReference = firebaseDatabase.getReference("WeatherData")
+        dbrefpower = firebaseDatabase.getReference("SensorData")
+
 
         getData()
         binding.tempCard.setOnClickListener{
@@ -51,8 +55,6 @@ class HomeFrag : Fragment() {
         binding.powercard.setOnClickListener{
             callfrommainactivity(powerCardFrag())
         }
-
-
         return view
     }
     private fun getData() {
@@ -65,17 +67,26 @@ class HomeFrag : Fragment() {
                     val humidity = snapshot.child("humidity").getValue(Double::class.java)
                     val temperature = snapshot.child("temperature").getValue(Double::class.java)
                     val power = snapshot.child("Power").getValue(Double::class.java)
-
-
                     // Update the TextViews with the retrieved data
                     binding.humidityValue.text = "${humidity?.toString() ?: "N/A"}"
                     binding.tempValue.text = "${temperature?.toString() ?: "N/A"}"
                    binding.powerValue.text = "${power?.toString() ?: "N/A"}"
-
-
                 }
             }
 
+            override fun onCancelled(error: DatabaseError) {
+                // Handle database retrieval error
+                Toast.makeText(requireContext(), "Failed to get data.${error.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
+        dbrefpower.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                // Check if the snapshot exists and contains the expected data
+                if (snapshot.exists()) {
+                    val power = snapshot.child("Power").getValue(Double::class.java)
+                    binding.powerValue.text = "${power?.toString() ?: "N/A"}"
+                }
+            }
             override fun onCancelled(error: DatabaseError) {
                 // Handle database retrieval error
                 Toast.makeText(requireContext(), "Failed to get data.${error.message}", Toast.LENGTH_SHORT).show()

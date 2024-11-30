@@ -2,7 +2,6 @@ package com.example.soni_innogeek.frags
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.view.FrameStats
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,9 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.NumberPicker
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import com.example.soni_innogeek.R
-import com.example.soni_innogeek.databinding.FragmentHumidityCardBinding
 import com.example.soni_innogeek.databinding.FragmentSettingsBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -20,51 +17,56 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-
 class SettingsFrag : Fragment() {
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var firebaseDatabase: FirebaseDatabase
     private lateinit var databaseReference: DatabaseReference
+    private lateinit var modeReference: DatabaseReference
+
+    // Flag to prevent infinite loops when updating UI
+    private var isUpdatingFromFirebase = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        // Initialize Firebase database reference
+        // Initialize Firebase database references
         firebaseDatabase = FirebaseDatabase.getInstance()
         databaseReference = firebaseDatabase.getReference("panelAngle")
+        modeReference = firebaseDatabase.getReference("mode")
 
         // Set initial values from Firebase
         fetchAngleDataFromFirebase()
-        //avisoni material switch
+        setupModeListeners()
 
-        var apparatusMode = 0
-
+        // Material switch listener
         binding.materialSwitch.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                apparatusMode = 1
-                // The switch is checked.
-            } else {
-                apparatusMode = 0
-                // The switch isn't checked.
+            if (!isUpdatingFromFirebase) {
+                if (isChecked) {
+                    modeReference.setValue(1)
+                    binding.toggle.isChecked = false
+                } else {
+                    modeReference.setValue(0)
+                }
             }
         }
+
+        // Toggle switch listener
         binding.toggle.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                apparatusMode = 2
-                // The switch is checked.
-            } else {
-                apparatusMode = 1
-                // The switch isn't checked.
+            if (!isUpdatingFromFirebase) {
+                if (isChecked) {
+                    modeReference.setValue(2)
+                    binding.materialSwitch.isChecked = false
+                } else {
+                    modeReference.setValue(0)
+                }
             }
         }
-        //
 
         // Click listeners for change buttons
         binding.changehoriangle.setOnClickListener {
@@ -76,6 +78,39 @@ class SettingsFrag : Fragment() {
         }
 
         return view
+    }
+
+    private fun setupModeListeners() {
+        modeReference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val mode = snapshot.getValue(Int::class.java) ?: 0
+                isUpdatingFromFirebase = true
+
+                when (mode) {
+                    0 -> {
+                        // Apparatus OFF
+                        binding.materialSwitch.isChecked = false
+                        binding.toggle.isChecked = false
+                    }
+                    1 -> {
+                        // Apparatus ON
+                        binding.materialSwitch.isChecked = true
+                        binding.toggle.isChecked = false
+                    }
+                    2 -> {
+                        // Cleaning Mode
+                        binding.materialSwitch.isChecked = false
+                        binding.toggle.isChecked = true
+                    }
+                }
+
+                isUpdatingFromFirebase = false
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(context, "Failed to load mode status.", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     private fun fetchAngleDataFromFirebase() {
@@ -130,7 +165,7 @@ class SettingsFrag : Fragment() {
             dialog.dismiss()
         }
 
-        dialog.show() // Show the dialog
+        dialog.show()
     }
 
     override fun onDestroyView() {
