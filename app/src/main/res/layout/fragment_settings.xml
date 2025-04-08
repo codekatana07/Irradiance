@@ -115,6 +115,24 @@
 
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/statusTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Storm Alert Service Status: Not Running"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:layout_marginTop="24dp"/>
+
+            <Button
+                android:id="@+id/startServiceButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Start Storm Alert Service"
+                android:layout_gravity="center"/>
+
 
         </LinearLayout>
     </ScrollView>

@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.google.gms.google.services)
 }
 
+
 android {
     namespace = "com.example.soni_innogeek"
     compileSdk = 34
@@ -48,11 +49,13 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.firebase.auth.ktx)
     implementation(libs.firebase.database)
+
     implementation(libs.firebase.auth)
     implementation(libs.firebase.database.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
     implementation("de.hdodenhof:circleimageview:3.1.0")
     implementation ("com.airbnb.android:lottie:6.6.0")
     // Add Places SDK dependency
