@@ -1,144 +1,116 @@
 package com.example.soni_innogeek
 
-import android.app.*
+import android.Manifest
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.Service
 import android.content.Intent
-import android.content.Context
-import android.graphics.Color
+import android.content.pm.ServiceInfo
 import android.os.Build
 import android.os.IBinder
 import android.util.Log
+import androidx.annotation.RequiresPermission
 import androidx.core.app.NotificationCompat
-import com.google.firebase.FirebaseApp
-import com.google.firebase.database.*
+import androidx.core.app.NotificationManagerCompat
+import com.google.firebase.database.ChildEventListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import kotlin.random.Random
 
 class StormAlertService : Service() {
-
-    private lateinit var databaseReference: DatabaseReference
-    private var valueEventListener: ValueEventListener? = null
-
-    companion object {
-        private const val TAG = "StormAlertService"
-        private const val NOTIFICATION_ID = 101
-        private const val CHANNEL_ID = "storm_alert_channel"
-        private const val ALERT_PATH = "storm_alert" // Path in Firebase database
-
-        var isRunning = false // To track if the service is running
-    }
+    private lateinit var database: FirebaseDatabase
+    private lateinit var stormRef: DatabaseReference
+    private var stormListener: ValueEventListener? = null
 
     override fun onCreate() {
         super.onCreate()
-        FirebaseApp.initializeApp(this)
-        createNotificationChannel()
-        startForeground(NOTIFICATION_ID, createForegroundNotification())
-        isRunning = true
+        startForegroundService()
+        setupStormListener()
     }
 
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        listenForStormAlerts()
-        // If the service gets killed, restart it
-        return START_STICKY
-    }
-
-    private fun listenForStormAlerts() {
-        try {
-            databaseReference = FirebaseDatabase.getInstance().reference.child(ALERT_PATH)
-
-            valueEventListener = object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    val stormAlert = snapshot.getValue(Boolean::class.java) ?: false
-                    Log.d(TAG, "Storm alert value changed: $stormAlert")
-
-                    if (stormAlert) {
-                        sendStormAlertNotification()
-                    }
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    Log.e(TAG, "Database error: ${error.message}")
-                }
-            }
-
-            databaseReference.addValueEventListener(valueEventListener!!)
-            Log.d(TAG, "Started listening for storm alerts")
-        } catch (e: Exception) {
-            Log.e(TAG, "Error setting up database listener", e)
-        }
-    }
-
-    private fun createNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name = "Storm Alert Channel"
-            val description = "Channel for storm alert notifications"
-            val importance = NotificationManager.IMPORTANCE_HIGH
-
-            val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
-                this.description = description
-                enableLights(true)
-                lightColor = Color.RED
-                enableVibration(true)
-                setShowBadge(true)
-            }
-
-            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(channel)
-        }
-    }
-
-    private fun createForegroundNotification(): Notification {
-        val pendingIntent = PendingIntent.getActivity(
-            this,
-            0,
-            Intent(this, MainActivity::class.java),
-            PendingIntent.FLAG_IMMUTABLE
-        )
-
-        return NotificationCompat.Builder(this, CHANNEL_ID)
-            .setContentTitle("Storm Alert Service")
-            .setContentText("Monitoring for severe weather alerts")
-            .setSmallIcon(android.R.drawable.ic_dialog_info)
-            .setContentIntent(pendingIntent)
-            .setPriority(NotificationCompat.PRIORITY_LOW)
+    private fun startForegroundService() {
+        val channelId = createNotificationChannel("service_channel", "Storm Monitoring", NotificationManager.IMPORTANCE_LOW)
+        val notification = NotificationCompat.Builder(this, channelId)
+            .setContentTitle("Storm Monitoring Active")
+            .setContentText("Watching for weather changes")
+            .setSmallIcon(R.drawable.baseline_add_alert_24)
             .build()
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            startForeground(SERVICE_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC)
+        } else {
+            startForeground(SERVICE_ID, notification)
+        }
     }
 
-    private fun sendStormAlertNotification() {
-        val intent = Intent(this, MainActivity::class.java)
-        val pendingIntent = PendingIntent.getActivity(
-            this,
-            0,
-            intent,
-            PendingIntent.FLAG_IMMUTABLE
-        )
+    private fun setupStormListener() {
+        database = FirebaseDatabase.getInstance()
+        stormRef = database.getReference("storm_alert")
 
-        val notification = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setContentTitle("Storm Alert")
-            .setContentText("Severe weather conditions detected in your area")
-            .setStyle(NotificationCompat.BigTextStyle()
-                .bigText("Severe weather conditions detected in your area. Take necessary precautions and stay safe."))
-            .setSmallIcon(android.R.drawable.ic_dialog_alert)
-            .setContentIntent(pendingIntent)
-            .setPriority(NotificationCompat.PRIORITY_HIGH)
-            .setCategory(NotificationCompat.CATEGORY_ALARM)
+        stormListener = object : ValueEventListener {
+            @RequiresPermission(Manifest.permission.POST_NOTIFICATIONS)
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val isStormActive = snapshot.getValue(Boolean::class.java) ?: false
+                if (isStormActive) {
+                    showStormAlertNotification()
+                    // Reset after notification
+                    stormRef.setValue(false)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("StormAlert", "Firebase error: ${error.message}")
+            }
+        }
+
+        stormRef.addValueEventListener(stormListener!!)
+    }
+
+    @RequiresPermission(Manifest.permission.POST_NOTIFICATIONS)
+    private fun showStormAlertNotification() {
+        val channelId = createNotificationChannel("alert_channel", "Storm Alerts", NotificationManager.IMPORTANCE_HIGH)
+
+        val notification = NotificationCompat.Builder(this, channelId)
+            .setContentTitle("⛈️ Storm Detected!")
+            .setContentText("Dangerous weather conditions imminent!")
+            .setSmallIcon(R.drawable.baseline_add_alert_24)
+            .setPriority(NotificationCompat.PRIORITY_MAX)
             .setAutoCancel(true)
-            .setVibrate(longArrayOf(0, 500, 200, 500))
-            .setLights(Color.RED, 3000, 3000)
             .build()
 
-        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        // Use a different ID than the foreground notification
-        notificationManager.notify(NOTIFICATION_ID + 1, notification)
+        NotificationManagerCompat.from(this)
+            .notify(ALERT_ID, notification)
+    }
+
+    private fun createNotificationChannel(channelId: String, name: String, importance: Int): String {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel(channelId, name, importance).apply {
+                description = "Storm monitoring service"
+                enableVibration(true)
+                getSystemService(NotificationManager::class.java)
+                    .createNotificationChannel(this)
+            }
+        }
+        return channelId
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        stormListener?.let {
+            stormRef.removeEventListener(it)
+        }
     }
 
     override fun onBind(intent: Intent?): IBinder? {
         return null
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        // Remove the database listener to prevent memory leaks
-        valueEventListener?.let {
-            databaseReference.removeEventListener(it)
-        }
-        isRunning = false
+    companion object {
+        const val SERVICE_ID = 1753
+        const val ALERT_ID = 1754
     }
 }
