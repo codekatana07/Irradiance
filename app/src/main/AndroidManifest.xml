@@ -23,7 +23,7 @@
             android:name=".AboutUsActivity"
             android:exported="false" />
         <activity
-            android:name=".DiscoverFragment"
+            android:name=".frags.DiscoverFragment"
             android:exported="false" />
         <activity
             android:name=".discover_page"

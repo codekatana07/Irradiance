@@ -1,4 +1,4 @@
-package com.example.soni_innogeek
+package com.example.soni_innogeek.frags
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
+import com.example.soni_innogeek.AboutUsActivity
+import com.example.soni_innogeek.R
 
 class DiscoverFragment : Fragment() {
 

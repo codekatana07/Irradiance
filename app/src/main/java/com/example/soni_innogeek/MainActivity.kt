@@ -9,6 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.example.soni_innogeek.databinding.ActivityMainBinding
+import com.example.soni_innogeek.frags.DiscoverFragment
 import com.example.soni_innogeek.frags.HomeFrag
 import com.example.soni_innogeek.frags.ProfileFrag
 import com.example.soni_innogeek.frags.SettingsFrag
