@@ -22,9 +22,6 @@ import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
-
-
-
 class ProfileFrag : Fragment() {
     private lateinit var _binding: FragmentProfileBinding
     private val binding get() = _binding!!
@@ -40,7 +37,6 @@ class ProfileFrag : Fragment() {
         if (!Places.isInitialized()) {
             Places.initialize(requireContext(),"AIzaSyBnqhtZWRDGkbu48vvqJpWRz8GKD0GuEgI")
         }
-
 
         binding.vertSettings.setOnClickListener {
             showPopupMenu(it)
@@ -61,7 +57,7 @@ class ProfileFrag : Fragment() {
             .get()
             .addOnSuccessListener { snapshot ->
                 if (snapshot.exists()) {
-                    val location = snapshot.value.toString()
+                    val location = snapshot.child("location").value.toString()
                     binding.profileLocation.text = location
                 }
             }
@@ -124,16 +120,22 @@ class ProfileFrag : Fragment() {
                         String.format("%.2f", latLng.latitude)
 
                     // Save location to Firebase
-                    saveLocationToFirebase(place.address.toString())
+                    saveLocationToFirebase(place.address.toString(), latLng.latitude, latLng.longitude)
                 }
             }
             .setNegativeButton("Cancel", null)
             .show()
     }
 
-    private fun saveLocationToFirebase(location: String) {
+    private fun saveLocationToFirebase(location: String, latitude: Double, longitude: Double) {
+        val locationData = mapOf(
+            "location" to location,
+            "lat" to latitude,
+            "long" to longitude
+        )
+
         database.getReference("location")
-            .setValue(location)
+            .setValue(locationData)
             .addOnSuccessListener {
                 Toast.makeText(context, "Location saved successfully", Toast.LENGTH_SHORT).show()
             }
