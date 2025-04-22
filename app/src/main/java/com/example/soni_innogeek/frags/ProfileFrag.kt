@@ -127,6 +127,7 @@ class ProfileFrag : Fragment() {
             .show()
     }
 
+
     private fun saveLocationToFirebase(location: String, latitude: Double, longitude: Double) {
         val locationData = mapOf(
             "location" to location,
