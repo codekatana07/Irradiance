@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/tempCard"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tempCard"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".frags.tempCardFrag"
-    android:background="@drawable/efficiencyfragbkg">
+    android:background="@drawable/efficiencyfragbkg"
+    tools:context=".frags.efficiencyCardFrag">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -14,13 +14,10 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp">
-
-
-
 
             <TextView
                 android:layout_width="match_parent"
@@ -30,8 +27,6 @@
                 android:textSize="44sp"
                 android:layout_marginTop="44dp"
                 android:textStyle="bold"/>
-
-
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -44,38 +39,31 @@
                     android:layout_height="wrap_content"
                     android:text="C output"
                     android:textStyle="bold"
-                    android:textColor="#ffff"
+                    android:textColor="#FFFFFF"
                     android:textSize="38sp"
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp"/>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="#ffff"
-                        android:text="%"
-                        android:layout_marginTop="20dp"
-                        android:textStyle="bold"
-                        android:textSize="32sp" />
-                </LinearLayout>
-
+                    android:text="%"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:textSize="32sp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="4dp"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <androidx.cardview.widget.CardView
                     android:layout_width="160dp"
                     android:layout_height="160dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_margin="8dp"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="4dp">
 
@@ -83,27 +71,23 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/efficiencyfragbkg1">
+
                         <TextView
                             android:id="@+id/maxefficiency"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="MAXIMUM "
-
+                            android:text="MAXIMUM"
                             android:textSize="24sp"
-                            android:textColor="#ffff"
+                            android:textColor="#FFFFFF"
                             android:layout_marginTop="12dp"
                             android:layout_marginStart="12dp"/>
                     </LinearLayout>
-
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="160dp"
                     android:layout_height="160dp"
-                    android:layout_marginRight="12dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_margin="8dp"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="4dp">
 
@@ -111,40 +95,27 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/efficiencyfragbkg1">
+
                         <TextView
                             android:id="@+id/minefficiency"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="MINIMUM "
-
+                            android:text="MINIMUM"
                             android:textSize="24sp"
-                            android:textColor="#ffff"
+                            android:textColor="#FFFFFF"
                             android:layout_marginTop="12dp"
                             android:layout_marginStart="12dp"/>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
-
-
             </LinearLayout>
 
-<!--            <ImageView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="400dp"-->
-<!--                android:src="@drawable/graph1"/>-->
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/animationView7"
+            <!-- Replaced Lottie with MPAndroidChart graph -->
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/efficiencyChart"
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
                 android:layout_marginTop="40dp"
-                app:lottie_rawRes="@raw/graph4"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="false"/>
-
-
-
-
-
+                android:layout_marginBottom="16dp"/>
         </LinearLayout>
     </ScrollView>
-
 </FrameLayout>
