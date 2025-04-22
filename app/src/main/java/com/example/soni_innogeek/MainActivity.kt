@@ -9,6 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.example.soni_innogeek.databinding.ActivityMainBinding
+import com.example.soni_innogeek.frags.DiscoverFragment
 import com.example.soni_innogeek.frags.HomeFrag
 import com.example.soni_innogeek.frags.ProfileFrag
 import com.example.soni_innogeek.frags.SettingsFrag
@@ -35,6 +36,9 @@ class MainActivity : AppCompatActivity() {
             R.id.nav_home -> replaceFragment(HomeFrag())
             R.id.nav_settings -> replaceFragment(SettingsFrag())
             R.id.nav_profile -> replaceFragment(ProfileFrag())
+            R.id.nav_discover -> replaceFragment(DiscoverFragment())
+
+
         }
         return true
     }
