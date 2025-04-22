@@ -35,6 +35,9 @@ class MainActivity : AppCompatActivity() {
             R.id.nav_home -> replaceFragment(HomeFrag())
             R.id.nav_settings -> replaceFragment(SettingsFrag())
             R.id.nav_profile -> replaceFragment(ProfileFrag())
+            R.id.nav_discover -> replaceFragment(DiscoverFragment())
+
+
         }
         return true
     }
