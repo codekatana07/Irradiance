@@ -17,6 +17,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        
     }
 
     buildTypes {
@@ -38,6 +39,8 @@ android {
     buildFeatures{
         viewBinding = true
     }
+
+
 }
 
 dependencies {
@@ -67,6 +70,9 @@ dependencies {
     // Make sure you have these Google Play Services dependencies
     implementation ("com.google.android.gms:play-services-location:21.1.0")
     implementation ("com.google.android.gms:play-services-maps:18.2.0")
+
+    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
 
 
 

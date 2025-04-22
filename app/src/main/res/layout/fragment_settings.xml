@@ -1,85 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-
     android:background="@android:color/white">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center_horizontal">
+
+            <!-- Title -->
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Adjust Angles"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="24dp"
+                android:textColor="@android:color/black" />
+
+            <!-- Horizontal Angle -->
+            <TextView
+                android:id="@+id/horiAngle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Horizontal Angle: 0°"
+                android:textSize="18sp"
+                android:textColor="@android:color/black"
+                android:layout_marginBottom="16dp" />
+
+            <Button
+                android:id="@+id/changehoriangle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Change Horizontal Angle"
+                android:textSize="16sp"
+                android:padding="12dp"
+                android:backgroundTint="@android:color/holo_blue_light"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="32dp" />
+
+            <!-- Vertical Angle -->
+            <TextView
+                android:id="@+id/vertiAngle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vertical Angle: 0°"
+                android:textSize="18sp"
+                android:textColor="@android:color/black"
+                android:layout_marginBottom="16dp" />
+
+            <Button
+                android:id="@+id/changevertiangle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Change Vertical Angle"
+                android:textSize="16sp"
+                android:padding="12dp"
+                android:backgroundTint="@android:color/holo_green_light"
+                android:textColor="@android:color/white" />
+
+            <!-- Divider 1 -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#CCCCCC"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Apparatus Mode -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:padding="24dp"
-                android:gravity="center"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <!-- Title for the Angles Section -->
-                <TextView
-                    android:id="@+id/tv_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Adjust Angles"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="24dp"
-                    android:textColor="@android:color/black" />
+                android:orientation="horizontal">
 
-                <!-- TextView to display selected Horizontal Angle -->
-                <TextView
-                    android:id="@+id/horiAngle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Horizontal Angle: 0°"
-                    android:textSize="18sp"
-                    android:textColor="@android:color/black"
-                    android:layout_marginBottom="16dp"/>
-
-                <!-- Button to open NumberPickerDialog for Horizontal Angle -->
-                <Button
-                    android:id="@+id/changehoriangle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Change Horizontal Angle"
-                    android:textSize="16sp"
-                    android:padding="12dp"
-                    android:backgroundTint="@android:color/holo_blue_light"
-                    android:textColor="@android:color/white"
-                    android:layout_marginBottom="32dp"/>
-
-                <!-- TextView to display selected Vertical Angle -->
-                <TextView
-                    android:id="@+id/vertiAngle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Vertical Angle: 0°"
-                    android:textSize="18sp"
-                    android:textColor="@android:color/black"
-                    android:layout_marginBottom="16dp"/>
-
-                <!-- Button to open NumberPickerDialog for Vertical Angle -->
-                <Button
-                    android:id="@+id/changevertiangle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Change Vertical Angle"
-                    android:textSize="16sp"
-                    android:padding="12dp"
-                    android:backgroundTint="@android:color/holo_green_light"
-                    android:textColor="@android:color/white" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="24dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -92,14 +95,23 @@
                     android:id="@+id/material_switch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="false"/>
+                    android:checked="false" />
             </LinearLayout>
+
+            <!-- Divider 2 -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#CCCCCC"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Cleaning Mechanism -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="4dp"
                 android:orientation="horizontal">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -111,10 +123,17 @@
                 <androidx.appcompat.widget.AppCompatToggleButton
                     android:id="@+id/toggle"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
+                    android:layout_height="wrap_content" />
             </LinearLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#CCCCCC"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Storm Alert Status -->
             <TextView
                 android:id="@+id/statusTextView"
                 android:layout_width="wrap_content"
@@ -123,19 +142,73 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:layout_gravity="center"
-                android:layout_marginTop="24dp"/>
+                android:layout_marginTop="24dp" />
 
             <Button
                 android:id="@+id/startServiceButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:text="Start Storm Alert Service"
-                android:layout_gravity="center"/>
+                android:layout_marginTop="16dp"
+                android:layout_gravity="center" />
 
+            <!-- Divider 3 -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#CCCCCC"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="16dp"/>
 
+            <!-- Heading: Calculation -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Calculation"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black" />
+
+            <!-- Total Consumption -->
+            <EditText
+                android:id="@+id/et_total_consumption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter total consumption (units)"
+                android:inputType="number"
+                android:layout_marginTop="8dp" />
+
+            <!-- Panel Type -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Panel Type"
+                android:layout_marginTop="16dp"
+                android:textColor="@android:color/black" />
+
+            <NumberPicker
+                android:id="@+id/np_panel_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+
+            <!-- Calculate -->
+            <Button
+                android:id="@+id/btn_calculate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Calculate Panels"
+                android:layout_marginTop="16dp" />
+
+            <!-- Result -->
+            <TextView
+                android:id="@+id/tv_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Result will be displayed here"
+                android:layout_marginTop="16dp"
+                android:textSize="16sp"
+                android:textColor="@android:color/black" />
         </LinearLayout>
     </ScrollView>
-
 </LinearLayout>
-

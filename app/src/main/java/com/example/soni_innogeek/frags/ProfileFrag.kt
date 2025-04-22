@@ -22,6 +22,9 @@ import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
+
+
+
 class ProfileFrag : Fragment() {
     private lateinit var _binding: FragmentProfileBinding
     private val binding get() = _binding!!
@@ -35,8 +38,9 @@ class ProfileFrag : Fragment() {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
 
         if (!Places.isInitialized()) {
-            Places.initialize(requireContext(), "AIzaSyANIdPTTdL83hKbWCuTZ9yPwraDauxCR-c")
+            Places.initialize(requireContext(),"AIzaSyBnqhtZWRDGkbu48vvqJpWRz8GKD0GuEgI")
         }
+
 
         binding.vertSettings.setOnClickListener {
             showPopupMenu(it)
