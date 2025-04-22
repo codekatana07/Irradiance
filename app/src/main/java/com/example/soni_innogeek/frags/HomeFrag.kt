@@ -44,7 +44,7 @@ class HomeFrag : Fragment() {
 
         getData()
         binding.tempCard.setOnClickListener{
-            callfrommainactivity(tempCardFrag())
+            callfrommainactivity(TempCardFrag())
         }
         binding.humiditycard.setOnClickListener{
             callfrommainactivity(humidityCardFrag())
