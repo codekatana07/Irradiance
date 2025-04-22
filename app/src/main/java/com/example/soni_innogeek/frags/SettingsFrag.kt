@@ -55,7 +55,31 @@ class SettingsFrag : Fragment() {
         setupUI()
         setupListeners()
         fetchInitialData()
+
+        val panelTypes = arrayOf(100, 250, 500)
+        binding.npPanelType.minValue = 0
+        binding.npPanelType.maxValue = panelTypes.size - 1
+        binding.npPanelType.displayedValues = panelTypes.map { "$it W" }.toTypedArray()
+
+        // Set Calculate Button Listener
+        binding.btnCalculate.setOnClickListener {
+            val totalConsumption = binding.etTotalConsumption.text.toString().toIntOrNull()
+            val selectedPanelType = panelTypes[binding.npPanelType.value]
+
+            if (totalConsumption == null || totalConsumption <= 0) {
+                Toast.makeText(requireContext(), "Enter a valid consumption value", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Perform Calculation
+            val panelsRequired = (totalConsumption / 365.0 * 1000 / selectedPanelType).toInt()
+            binding.tvResult.text = "You need $panelsRequired panels of $selectedPanelType W"
+        }
     }
+//    override fun onDestroyView() {
+//        super.onDestroyView()
+//        _binding = null
+//    }
 
     private fun setupUI() {
         updateServiceStatus()
@@ -251,4 +275,6 @@ class SettingsFrag : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+
 }
