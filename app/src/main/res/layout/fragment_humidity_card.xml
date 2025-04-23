@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".frags.tempCardFrag"
+    tools:context=".frags.humidityCardFrag"
     android:background="@drawable/humdfragbkg">
 
     <ScrollView
@@ -39,7 +39,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/currenthumidity"
+                    android:id="@+id/currentHumidityText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="C HUMIDITY"
@@ -57,7 +57,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#ffff"
-                        android:text="%"
+                        android:text=""
                         android:textStyle="bold"
                         android:textSize="32sp" />
                 </LinearLayout>
@@ -83,7 +83,7 @@
                         android:layout_height="match_parent"
                         android:background="@drawable/humdfragbkg1">
                         <TextView
-                            android:id="@+id/maxhumidity"
+                            android:id="@+id/maxhumiditytext"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="MAXIMUM "
@@ -111,7 +111,7 @@
                         android:layout_height="match_parent"
                         android:background="@drawable/humdfragbkg1">
                         <TextView
-                            android:id="@+id/minhumidity"
+                            android:id="@+id/minHumidityText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="MINIMUM "
@@ -130,14 +130,13 @@
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="400dp"-->
 <!--                android:src="@drawable/graph2"/>-->
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/animationView7"
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/humidityChart"
                 android:layout_width="match_parent"
-                android:layout_height="280dp"
-                android:layout_marginTop="40dp"
-                app:lottie_rawRes="@raw/graph5"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="false"/>
+                android:layout_height="300dp"
+                android:layout_margin="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
 
 

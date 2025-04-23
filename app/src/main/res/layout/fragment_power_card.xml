@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".frags.tempCardFrag"
+    tools:context=".frags.powerCardFrag"
     android:background="@drawable/powerfragbkg">
 
     <ScrollView
@@ -119,14 +119,13 @@
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="400dp"-->
 <!--                android:src="@drawable/graph4"/>-->
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/animationView7"
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/powerChart"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:layout_marginTop="40dp"
-                app:lottie_rawRes="@raw/graph6"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="false"/>
+                android:layout_margin="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
 
 

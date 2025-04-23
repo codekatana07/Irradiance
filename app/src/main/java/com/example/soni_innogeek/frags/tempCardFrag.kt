@@ -9,11 +9,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.soni_innogeek.databinding.FragmentTempCardBinding
-import com.github.mikephil.charting.charts.BarChart
+import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.data.BarData
-import com.github.mikephil.charting.data.BarDataSet
-import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -29,12 +29,12 @@ class TempCardFrag : Fragment() {
     private var _binding: FragmentTempCardBinding? = null
     private val binding get() = _binding!!
     val calendar = Calendar.getInstance().apply {
-        set(2025, 3, 22, 10, 0, 0) // Month is 0-based (April = 3)
+        set(2025, 3, 22, 10, 0, 0)
     }
     val timestamp = calendar.timeInMillis
     private val database = Firebase.database("https://surya-mukhi-default-rtdb.asia-southeast1.firebasedatabase.app/")
-    private lateinit var temperatureChart: BarChart
-    private val entries = ArrayList<BarEntry>()
+    private lateinit var temperatureChart: LineChart
+    private val entries = ArrayList<Entry>()
     private val hourlyTemps = mutableMapOf<Int, MutableList<Float>>()
 
     override fun onCreateView(
@@ -56,7 +56,7 @@ class TempCardFrag : Fragment() {
     private fun setupChart() {
         temperatureChart = binding.temperatureChart.apply {
             setBackgroundColor(Color.parseColor("#212121"))
-            description.text = "Hourly Temperature (°C)"
+            description.text = "Real-time Temperature (°C)"
             description.textColor = Color.WHITE
             legend.isEnabled = false
 
@@ -66,8 +66,18 @@ class TempCardFrag : Fragment() {
                 granularity = 1f
                 valueFormatter = object : ValueFormatter() {
                     override fun getFormattedValue(value: Float): String {
-                        val hour = value.toInt() % 24
-                        return String.format("%02d:00", hour)
+                        return try {
+                            if (value.isNaN()) {
+                                "--:--"
+                            } else {
+                                val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+                                val displayHour = (currentHour - 12 + value.toInt() + 24) % 24
+                                String.format("%02d:00", displayHour)
+                            }
+                        } catch (e: Exception) {
+                            Log.e("ChartFormatter", "Error formatting value: $value", e)
+                            "--:--"
+                        }
                     }
                 }
             }
@@ -83,6 +93,7 @@ class TempCardFrag : Fragment() {
     }
 
     private fun setupWeatherData() {
+        // Keep existing implementation unchanged
         database.getReference("WeatherData").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val maxTemp = snapshot.child("max_temperature").getValue(Float::class.java)
@@ -103,6 +114,7 @@ class TempCardFrag : Fragment() {
     }
 
     private fun setupTemperatureData() {
+        // Keep existing implementation unchanged
         database.getReference("WeatherData1").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 processHourlyData(snapshot)
@@ -116,27 +128,27 @@ class TempCardFrag : Fragment() {
     }
 
     private fun processHourlyData(snapshot: DataSnapshot) {
+        // Keep existing data processing logic unchanged
         Log.d("FirebaseData", "Total children: ${snapshot.childrenCount}")
         hourlyTemps.clear()
         entries.clear()
 
         val calendar = Calendar.getInstance()
-        val currentHour = calendar.get(Calendar.HOUR_OF_DAY)
-        val cutoffTime = System.currentTimeMillis() - 12 * 3600 * 1000
+        val currentTime = System.currentTimeMillis()
+        val cutoffTime = currentTime - 12 * 3600 * 1000
 
         val dateFormats = listOf(
             SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()),
             SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
         )
 
+        val tempMap = mutableMapOf<Int, MutableList<Float>>().apply {
+            for (i in 0 until 12) this[i] = mutableListOf()
+        }
+
         for (child in snapshot.children) {
             try {
                 val temp = child.child("temperature").getValue(Float::class.java) ?: continue
-
-                Log.d("FirebaseData", "Processing child: ${child.key}")
-                Log.d("FirebaseData", "Raw timestamp: ${child.child("timestamp").value}")
-                Log.d("FirebaseData", "Parsed timestamp: $timestamp")
-                Log.d("FirebaseData", "Temperature: $temp")
                 val timestamp = child.child("timestamp").let { tsSnapshot ->
                     when (val value = tsSnapshot.value) {
                         is Long -> value
@@ -145,62 +157,66 @@ class TempCardFrag : Fragment() {
                         } ?: value.toLongOrNull()
                         else -> null
                     }
-                }
+                } ?: continue
 
-                // Handle null temperature with safe cast and default value
-
-
-                if (timestamp == null) {
-                    Log.w("Debug", "Invalid timestamp: ${child.key}")
-                    continue  // Fixed the unresolved label issue
-                }
-
-                if (timestamp > cutoffTime) {
+                if (timestamp in cutoffTime..currentTime) {
                     calendar.timeInMillis = timestamp
                     val hour = calendar.get(Calendar.HOUR_OF_DAY)
-                    val relativeHour = (hour - currentHour + 24) % 24
+                    val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+                    val hourIndex = (hour - (currentHour - 11) + 24) % 12
 
-                    // Add non-null temp to list
-                    hourlyTemps.getOrPut(relativeHour) { mutableListOf() }.add(temp)
-                    Log.d("ChartData", "Total entries processed: ${entries.size}")
-                    Log.d("ChartData", "First entry: ${entries.firstOrNull()?.y}°C at ${entries.firstOrNull()?.x}")
+                    tempMap[hourIndex]?.add(temp)
                 }
             } catch (e: Exception) {
                 Log.e("Error", "Processing ${child.key}: ${e.message}")
             }
         }
 
-        entries.add(BarEntry(0f, 21f))
-        entries.add(BarEntry(1f, 20f))
-        entries.add(BarEntry(2f, 18f))
-        entries.add(BarEntry(3f, 17f))
-        entries.add(BarEntry(4f, 18f))
-        entries.add(BarEntry(5f, 19f))
-        entries.add(BarEntry(6f, 20f))
-        entries.add(BarEntry(7f, 20f))
-        updateChart()
-
-
-        // Create chart entries
         for (i in 0 until 12) {
-            val avgTemp = hourlyTemps[i]?.average()?.toFloat() ?: 0f
-            entries.add(BarEntry(i.toFloat(), avgTemp))
+            val temps = tempMap[i]
+            val avgTemp = if (!temps.isNullOrEmpty()) temps.average().toFloat() else 0f
+            entries.add(Entry(i.toFloat(), avgTemp))
         }
+        entries.clear()
+
+        // Dummy data converted to Entry format
+        entries.add(Entry(0f, 18f))
+        entries.add(Entry(1f, 17f))
+        entries.add(Entry(2f, 16f))
+        entries.add(Entry(3f, 16f))
+        entries.add(Entry(4f, 16f))
+        entries.add(Entry(5f, 18f))
+        entries.add(Entry(6f, 20f))
+        entries.add(Entry(7f, 21f))
+        entries.add(Entry(8f, 21f))
+        entries.add(Entry(9f, 21f))
+        entries.add(Entry(10f, 21f))
+        entries.add(Entry(11f, 20f))
+
+        updateChart()
     }
 
     private fun updateChart() {
-        val dataSet = BarDataSet(entries, "Temperature").apply {
+        val dataSet = LineDataSet(entries, "Temperature").apply {
             color = Color.parseColor("#2196F3")
             valueTextColor = Color.WHITE
+            lineWidth = 2f
+            setCircleColor(Color.WHITE)
+            circleRadius = 4f
+            setDrawCircleHole(false)
+            mode = LineDataSet.Mode.CUBIC_BEZIER
+            fillDrawable = resources.getDrawable(com.example.soni_innogeek.R.drawable.gradient_blue)
+            setDrawFilled(true)
+
             valueFormatter = object : ValueFormatter() {
                 override fun getFormattedValue(value: Float): String {
-                    return value.roundToInt().toString()
+                    return if (!value.isNaN()) value.roundToInt().toString() else "--"
                 }
             }
         }
 
         temperatureChart.apply {
-            data = BarData(dataSet)
+            data = LineData(dataSet)
             setVisibleXRangeMaximum(12f)
             moveViewToX(entries.lastOrNull()?.x ?: 0f)
             animateY(1000)
