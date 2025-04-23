@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".frags.ProfileFrag"
-    android:background="@drawable/evening">
+    android:background="@color/white">
 
 <ScrollView
         android:layout_width="match_parent"
@@ -30,7 +30,7 @@
                 android:text="User 1"
                 android:textStyle="bold"
                 android:textSize="32sp"
-                android:textColor="#ffff"
+                android:textColor="#E52A2A2A"
                 app:drawableEndCompat="@drawable/baseline_keyboard_arrow_down_24" />
 
             <TextView
@@ -66,7 +66,7 @@
             android:layout_height="40dp"
             android:text="soniavi3007@gmail.com"
             android:textSize="20sp"
-            android:textColor="#ffff"
+            android:textColor="#E52A2A2A"
             android:layout_marginTop="8dp"
             android:layout_marginStart="8dp"/>
 
@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             android:text="Click to select location"
             android:textSize="20sp"
-            android:textColor="#ffff"
+            android:textColor="#E52A2A2A"
             android:drawableEnd="@drawable/baseline_location_on_24"
             android:layout_margin="16dp"
             android:background="?attr/selectableItemBackground"

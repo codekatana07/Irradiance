@@ -82,7 +82,7 @@ class efficiencyCardFrag : Fragment() {
         }
 
         if (efficiency < 75f) {
-            modeRef.setValue("2")
+            modeRef.setValue(2)
             Toast.makeText(requireContext(), "Cleaning Activated", Toast.LENGTH_SHORT).show()
             sendNotification()
         }

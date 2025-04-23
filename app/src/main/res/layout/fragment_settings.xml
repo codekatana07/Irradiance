@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -14,201 +15,222 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="24dp"
-            android:gravity="center_horizontal">
+            android:padding="16dp">
 
-            <!-- Title -->
-            <TextView
-                android:id="@+id/tv_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Adjust Angles"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="24dp"
-                android:textColor="@android:color/black" />
-
-            <!-- Horizontal Angle -->
-            <TextView
-                android:id="@+id/horiAngle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Horizontal Angle: 0°"
-                android:textSize="18sp"
-                android:textColor="@android:color/black"
-                android:layout_marginBottom="16dp" />
-
-            <Button
-                android:id="@+id/changehoriangle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Change Horizontal Angle"
-                android:textSize="16sp"
-                android:padding="12dp"
-                android:backgroundTint="@android:color/holo_blue_light"
-                android:textColor="@android:color/white"
-                android:layout_marginBottom="32dp" />
-
-            <!-- Vertical Angle -->
-            <TextView
-                android:id="@+id/vertiAngle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Vertical Angle: 0°"
-                android:textSize="18sp"
-                android:textColor="@android:color/black"
-                android:layout_marginBottom="16dp" />
-
-            <Button
-                android:id="@+id/changevertiangle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Change Vertical Angle"
-                android:textSize="16sp"
-                android:padding="12dp"
-                android:backgroundTint="@android:color/holo_green_light"
-                android:textColor="@android:color/white" />
-
-            <!-- Divider 1 -->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#CCCCCC"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="16dp"/>
-
-            <!-- Apparatus Mode -->
-            <LinearLayout
+            <!-- Card: Adjust Angles -->
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginBottom="16dp"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="12dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Apparatus Mode"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:layout_marginEnd="8dp" />
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:gravity="center_horizontal">
 
-                <com.google.android.material.switchmaterial.SwitchMaterial
-                    android:id="@+id/material_switch"
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/tv_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Adjust Angles"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:layout_marginBottom="16dp" />
+
+                    <TextView
+                        android:id="@+id/horiAngle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Horizontal Angle: 0°"
+                        android:textSize="16sp"
+                        android:textColor="@android:color/black" />
+
+                    <Button
+                        android:id="@+id/changehoriangle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Change Horizontal Angle"
+                        android:layout_marginTop="8dp"
+                        android:backgroundTint="@android:color/holo_blue_light"
+                        android:textColor="@android:color/white" />
+
+                    <TextView
+                        android:id="@+id/vertiAngle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Vertical Angle: 0°"
+                        android:textSize="16sp"
+                        android:textColor="@android:color/black"
+                        android:layout_marginTop="16dp" />
+
+                    <Button
+                        android:id="@+id/changevertiangle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Change Vertical Angle"
+                        android:layout_marginTop="8dp"
+                        android:backgroundTint="@android:color/holo_green_light"
+                        android:textColor="@android:color/white" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Card: Apparatus Mode -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:checked="false" />
-            </LinearLayout>
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
 
-            <!-- Divider 2 -->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#CCCCCC"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Apparatus Mode"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
-            <!-- Cleaning Mechanism -->
-            <LinearLayout
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/material_switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Card: Cleaning Mechanism -->
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginBottom="16dp"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="12dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Cleaning Mechanism"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:layout_marginEnd="8dp" />
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical">
 
-                <androidx.appcompat.widget.AppCompatToggleButton
-                    android:id="@+id/toggle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cleaning Mechanism"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#CCCCCC"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"/>
+                    <androidx.appcompat.widget.AppCompatToggleButton
+                        android:id="@+id/toggle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-            <!-- Storm Alert Status -->
-            <TextView
-                android:id="@+id/statusTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Storm Alert Service Status: Not Running"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:layout_gravity="center"
-                android:layout_marginTop="24dp" />
-
-            <Button
-                android:id="@+id/startServiceButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Start Storm Alert Service"
-                android:layout_marginTop="16dp"
-                android:layout_gravity="center" />
-
-            <!-- Divider 3 -->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#CCCCCC"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="16dp"/>
-
-            <!-- Heading: Calculation -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Calculation"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@android:color/black" />
-
-            <!-- Total Consumption -->
-            <EditText
-                android:id="@+id/et_total_consumption"
+            <!-- Card: Storm Alert -->
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter total consumption (units)"
-                android:inputType="number"
-                android:layout_marginTop="8dp" />
+                android:layout_marginBottom="16dp"
+                app:cardElevation="4dp"
+                app:cardCornerRadius="12dp">
 
-            <!-- Panel Type -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Select Panel Type"
-                android:layout_marginTop="16dp"
-                android:textColor="@android:color/black" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:gravity="center_horizontal">
 
-            <NumberPicker
-                android:id="@+id/np_panel_type"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center" />
+                    <TextView
+                        android:id="@+id/statusTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Storm Alert Service Status: Not Running"
+                        android:textStyle="bold"
+                        android:textSize="16sp" />
 
-            <!-- Calculate -->
-            <Button
-                android:id="@+id/btn_calculate"
+                    <Button
+                        android:id="@+id/startServiceButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Start Storm Alert Service"
+                        android:layout_marginTop="12dp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Card: Calculation -->
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Calculate Panels"
-                android:layout_marginTop="16dp" />
+                app:cardElevation="4dp"
+                app:cardCornerRadius="12dp">
 
-            <!-- Result -->
-            <TextView
-                android:id="@+id/tv_result"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Result will be displayed here"
-                android:layout_marginTop="16dp"
-                android:textSize="16sp"
-                android:textColor="@android:color/black" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Calculation"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black" />
+
+                    <EditText
+                        android:id="@+id/et_total_consumption"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter total consumption (units)"
+                        android:inputType="number"
+                        android:layout_marginTop="8dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Select Panel Type"
+                        android:layout_marginTop="16dp"
+                        android:textColor="@android:color/black" />
+
+                    <NumberPicker
+                        android:id="@+id/np_panel_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center" />
+
+                    <Button
+                        android:id="@+id/btn_calculate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Calculate Panels"
+                        android:layout_marginTop="16dp" />
+
+                    <TextView
+                        android:id="@+id/tv_result"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Result will be displayed here"
+                        android:textSize="16sp"
+                        android:textColor="@android:color/black"
+                        android:layout_marginTop="16dp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

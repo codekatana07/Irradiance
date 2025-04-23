@@ -38,7 +38,7 @@ class HomeFrag : Fragment() {
 
         val view= binding.root
         firebaseDatabase = FirebaseDatabase.getInstance()
-        databaseReference = firebaseDatabase.getReference("WeatherData")
+        databaseReference = firebaseDatabase.getReference("WeatherData2")
         dbrefpower = firebaseDatabase.getReference("SensorData")
 
 

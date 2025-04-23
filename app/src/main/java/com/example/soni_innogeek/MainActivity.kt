@@ -34,9 +34,10 @@ class MainActivity : AppCompatActivity() {
     private fun handleBottomNavigation(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_home -> replaceFragment(HomeFrag())
-            R.id.nav_settings -> replaceFragment(SettingsFrag())
-            R.id.nav_profile -> replaceFragment(ProfileFrag())
             R.id.nav_discover -> replaceFragment(DiscoverFragment())
+            R.id.nav_profile -> replaceFragment(ProfileFrag())
+            R.id.nav_settings -> replaceFragment(SettingsFrag())
+
 
 
         }

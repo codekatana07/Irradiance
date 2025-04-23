@@ -26,9 +26,9 @@
         <activity
             android:name=".frags.DiscoverFragment"
             android:exported="false" />
-        <activity
-            android:name=".discover_page"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".discover_page"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".SplashActivity"
             android:exported="true">

@@ -24,6 +24,7 @@ import kotlin.random.Random
 class StormAlertService : Service() {
     private lateinit var database: FirebaseDatabase
     private lateinit var stormRef: DatabaseReference
+    private lateinit var modeRef: DatabaseReference
     private var stormListener: ValueEventListener? = null
 
     override fun onCreate() {
@@ -50,6 +51,7 @@ class StormAlertService : Service() {
     private fun setupStormListener() {
         database = FirebaseDatabase.getInstance()
         stormRef = database.getReference("storm_alert")
+        modeRef = database.getReference("mode")
 
         stormListener = object : ValueEventListener {
             @RequiresPermission(Manifest.permission.POST_NOTIFICATIONS)
@@ -57,6 +59,7 @@ class StormAlertService : Service() {
                 val isStormActive = snapshot.getValue(Boolean::class.java) ?: false
                 if (isStormActive) {
                     showStormAlertNotification()
+                   modeRef.setValue(0)
                     // Reset after notification
                     stormRef.setValue(false)
                 }
