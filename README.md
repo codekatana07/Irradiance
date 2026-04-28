@@ -1,1 +1,9 @@
-<img width="1080" height="2400" alt="IMG-20250216-WA0011" src="https://github.com/user-attachments/assets/a01f4c4d-f10d-4d82-9f38-73788aadc35b" />
+<details>
+  <summary>📱 App Screenshots</summary>
+  <br>
+
+  <img src="IMAGE_LINK_1" width="250"/>
+  <img src="IMAGE_LINK_2" width="250"/>
+  <img src="IMAGE_LINK_3" width="250"/>
+
+</details>
